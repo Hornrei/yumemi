@@ -1,42 +1,4 @@
-// import React, { useState } from 'react';
-// import PrefectureCheckboxes from './components/checkbox';
 
-// const App = () => {
-//     const [selectedPrefectures, setSelectedPrefectures] = useState({});
-//     const [prefectures, setPrefectures] = useState([]);
-
-//     const handleSelectionChange = (newSelectedPrefectures) => {
-//         setSelectedPrefectures(newSelectedPrefectures);
-//     };
-
-//     const handlePrefecturesFetched = (fetchedPrefectures) => {
-//         setPrefectures(fetchedPrefectures);
-//     };
-
-//     return (
-//         <div>
-//             <h1>都道府県別人口</h1>
-//             <PrefectureCheckboxes
-//                 apiKey="PXPDdLCrTqyaYPsUwtR08p6xsLzOJPKWFvdpGCkt" // ここにあなたのAPIキーを入力
-//                 onSelectionChange={handleSelectionChange}
-//                 onPrefecturesFetched={handlePrefecturesFetched} // 都道府県データを受け取るコールバック
-//             />
-//             <div>
-//                 <h2>選択された都道府県</h2>
-//                 <ul>
-//                     {Object.keys(selectedPrefectures)
-//                         .filter((prefCode) => selectedPrefectures[prefCode])
-//                         .map((prefCode) => {
-//                             const pref = prefectures.find((p) => p.prefCode === parseInt(prefCode));
-//                             return <li key={prefCode}>{pref?.prefName}</li>;
-//                         })}
-//                 </ul>
-//             </div>
-//         </div>
-//     );
-// };
-
-// export default App;
 
 import React, { useState, useEffect } from 'react'
 
