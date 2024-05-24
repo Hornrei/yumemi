@@ -1,5 +1,3 @@
-
-
 import React, { useState, useEffect } from 'react'
 
 import axios from 'axios'
@@ -14,9 +12,7 @@ import {
   ResponsiveContainer,
 } from 'recharts'
 
-
 const apiKey = process.env.REACT_APP_API_KEY
-
 
 export default function App() {
   const [prefectures, setPrefectures] = useState([])
@@ -56,7 +52,7 @@ export default function App() {
               // APIキー
               headers: {
                 'X-API-KEY': apiKey,
-              }, 
+              },
             }
           )
           allPopulationData.push({
