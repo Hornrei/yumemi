@@ -14,6 +14,10 @@ import {
   ResponsiveContainer,
 } from 'recharts'
 
+
+const apiKey = process.env.REACT_APP_API_KEY
+
+
 export default function App() {
   const [prefectures, setPrefectures] = useState([])
   const [populationData, setPopulationData] = useState([])
@@ -28,7 +32,7 @@ export default function App() {
     axios
       .get('https://opendata.resas-portal.go.jp/api/v1/prefectures', {
         // APIキー
-        headers: { 'X-API-KEY': '' },
+        headers: { 'X-API-KEY': apiKey },
       })
       .then((res) => {
         setPrefectures(res.data.result)
@@ -51,8 +55,8 @@ export default function App() {
             {
               // APIキー
               headers: {
-                'X-API-KEY': '',
-              }, // ここにAPIキーを入力
+                'X-API-KEY': apiKey,
+              }, 
             }
           )
           allPopulationData.push({
