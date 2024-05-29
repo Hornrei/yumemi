@@ -41,6 +41,7 @@ export default function App() {
 
   // 人口構成データの取得
   useEffect(() => {
+
     if (selectedPrefectures.length === 0) return
     
     //選択したagegroupの値を取得
@@ -83,7 +84,7 @@ export default function App() {
     }
 
     fetchPopulationData()
-  }, [selectedPrefectures])
+  }, [selectedPrefectures, ageGroup ])
 
 
 
