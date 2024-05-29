@@ -18,6 +18,7 @@ export default function App() {
   const [prefectures, setPrefectures] = useState([])
   const [populationData, setPopulationData] = useState([])
   const [selectedPrefectures, setSelectedPrefectures] = useState([])
+  const [ageGroup, setAgeGroup] = useState('総人口')
 
   // 47都道府県を配列に格納
   const allPrefectures = prefectures.map((prefecture) => prefecture.prefName)
@@ -41,25 +42,40 @@ export default function App() {
   // 人口構成データの取得
   useEffect(() => {
     if (selectedPrefectures.length === 0) return
-
+    
+    //選択したagegroupの値を取得
     const fetchPopulationData = async () => {
       try {
         const allPopulationData = []
-        for (const prefCode of selectedPrefectures) {
-          const res = await axios.get(
-            `https://opendata.resas-portal.go.jp/api/v1/population/composition/perYear?cityCode=-&prefCode=${prefCode}`,
-            {
-              // APIキー
-              headers: {
-                'X-API-KEY': apiKey,
-              },
+        
+          for (const prefCode of selectedPrefectures) {
+            const res = await axios.get(
+              `https://opendata.resas-portal.go.jp/api/v1/population/composition/perYear?cityCode=-&prefCode=${prefCode}`,
+              {
+                // APIキー
+                headers: {
+                  'X-API-KEY': apiKey,
+                },
+              }
+            )
+
+            let n;
+            if (ageGroup === '総人口') {
+              n = 0
+            }else if (ageGroup === '年少人口') {
+              n = 1
+            }else if (ageGroup === '生産年齢人口') {
+              n = 2
+            } else if (ageGroup === '老年人口') {
+              n = 3
             }
-          )
-          allPopulationData.push({
-            prefCode,
-            data: res.data.result.data[0].data,
-          })
-        }
+
+            allPopulationData.push({
+              prefCode,
+              data: res.data.result.data[n].data,
+            })
+
+          }
         setPopulationData(allPopulationData)
       } catch (err) {
         console.log(err)
@@ -68,6 +84,9 @@ export default function App() {
 
     fetchPopulationData()
   }, [selectedPrefectures])
+
+
+
 
   // チェックボタンの操作
   const handleCheckbox = (prefCode) => {
@@ -117,7 +136,48 @@ export default function App() {
               </label>
             </div>
           ))}
+      </div>
+
+        <h2>年齢層選択</h2>
+        <div>
+          <input
+            type="radio"
+            id="total"
+            name="ageGroup"
+            value="総人口"
+            checked={ageGroup === '総人口'}
+            onChange={(e) => setAgeGroup(e.target.value)}
+          />
+          <label htmlFor="total">総人口</label>
+          <input
+            type="radio"
+            id="oldAge"
+            name="ageGroup"
+            value="老年人口"
+            checked={ageGroup === '老年人口'}
+            onChange={(e) => setAgeGroup(e.target.value)}
+          />
+          <label htmlFor="oldAge">老年人口</label>
+          <input
+            type="radio"
+            id="workingAge"
+            name="ageGroup"
+            value="生産年齢人口"
+            checked={ageGroup === '生産年齢人口'}
+            onChange={(e) => setAgeGroup(e.target.value)}
+          />
+          <label htmlFor="workingAge">生産年齢人口</label>
+          <input
+            type="radio"
+            id="youngAge"
+            name="ageGroup"
+            value="年少人口"
+            checked={ageGroup === '年少人口'}
+            onChange={(e) => setAgeGroup(e.target.value)}
+          />
+          <label htmlFor="youngAge">年少人口</label>
         </div>
+        
         <h2>人口数</h2>
         {formattedData.length > 0 && (
           <ResponsiveContainer width="100%" height={400}>
