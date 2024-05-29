@@ -1,0 +1,37 @@
+/* header */
+
+.header{
+    text-align: center;
+}
+.wrapper{
+    width: 1200px;
+    margin: 0 auto;
+}
+
+/* 都道府県選択 */
+.tihou_container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.tihou{
+    width: 300px;
+}
+
+/* 人口構成選択 */
+
+/* チャート部分 */
+
+
+
+/* レスポンシブ対応 */
+@media screen and (max-width: 1200px){
+    .wrapper{
+        width: 100%;
+    }
+    .tihou{
+        width: 100%;
+    }
+}
