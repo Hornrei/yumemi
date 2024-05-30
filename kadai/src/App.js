@@ -38,6 +38,28 @@ export default function App() {
   const allPrefectures = prefectures.map((prefecture) => prefecture.prefName)
   const newAllPrefectures = [...new Set(allPrefectures)] // 重複を削除
 
+  // rechartsのデフォルトデータ
+  const defaultYear = [
+    {year : '1960'}, 
+    {year : '1965'},
+    {year : '1970'},
+    {year : '1975'},
+    {year : '1980'},
+    {year : '1985'},
+    {year : '1990'},
+    {year : '1995'},
+    {year : '2000'},
+    {year : '2005'},
+    {year : '2010'},
+    {year : '2015'},
+    {year : '2020'},
+    {year : '2025'},
+    {year : '2030'},
+    {year : '2035'},
+    {year : '2040'},
+    {year : '2045'}
+  ]
+
   // 都道府県一覧を取得
   useEffect(() => {
     axios
@@ -113,6 +135,12 @@ export default function App() {
     }
   }
 
+  // 選択リセットボタン
+  const handleReset = () => {
+    setSelectedPrefectures([])
+  }
+
+
   // Recharts用のデータフォーマットに変換
   const formattedData = populationData.reduce((acc, { prefCode, data }) => {
     data.forEach((item, index) => {
@@ -128,6 +156,7 @@ export default function App() {
   useEffect(() => {
     if (!loading) return
     console.log("初回だけ")
+    
     setLoading(false)
   }, [loading])
 
@@ -140,8 +169,7 @@ export default function App() {
       </header>
       <div className="wrapper">
 
-        <h2>都道府県</h2>
-        <div className="tihou_container"> 
+        <div className="tihou_container">
           {Object.keys(regions).map((region) => (
             <div key={region} className='tihou'>
               <h3>{region}</h3>
@@ -150,18 +178,22 @@ export default function App() {
                   .filter((pref) => regions[region].includes(pref.prefName))
                   .map((prefecture) => (
                     <div key={prefecture.prefCode} className="prefecture__item">
+                      <label
+                        className="prefecture__label"
+                        htmlFor={`checkbox-${prefecture.prefCode}`}
+                      >
                       <input
                         className="prefecture__input"
                         type="checkbox"
                         id={`checkbox-${prefecture.prefCode}`}
                         name={prefecture.prefName}
+                        checked={selectedPrefectures.includes(prefecture.prefCode)}
                         onChange={() => handleCheckbox(prefecture.prefCode)}
                       />
-                      <label
-                        className="prefecture__label"
-                        htmlFor={`checkbox-${prefecture.prefCode}`}
-                      >
+                      <span class="dummyinput"></span>
+                      <span className='prefecture__text'>
                         {prefecture.prefName}
+                      </span>
                       </label>
                     </div>
                   ))}
@@ -210,11 +242,12 @@ export default function App() {
           />
           <label htmlFor="youngAge">年少人口</label>
         </div>
-        
+        <button onClick={handleReset}>選択リセット</button>
         <h2>人口数</h2>
-        {formattedData.length > 0 && (
-          <ResponsiveContainer width="100%" height={400}>
-            <LineChart data={formattedData}>
+        {console.log(formattedData)}
+
+        {<ResponsiveContainer width="100%" height={400}>
+            <LineChart data={formattedData.length > 0 ? formattedData : defaultYear}>
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis dataKey="year" />
               <YAxis 
@@ -223,7 +256,7 @@ export default function App() {
               />
               <Tooltip />
               <Legend />
-              {selectedPrefectures.map((prefCode) => {
+              {formattedData.length > 0 && selectedPrefectures.map((prefCode) => {
                 const prefName = newAllPrefectures[prefCode - 1]
                 return (
                   <Line
@@ -238,7 +271,7 @@ export default function App() {
               })}
             </LineChart>
           </ResponsiveContainer>
-        )}
+        }
       </div>
     </>
   )
