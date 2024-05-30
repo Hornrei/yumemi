@@ -60,6 +60,12 @@ export default function App() {
     {year : '2045'}
   ]
 
+  // カラーパレット
+  const colorPalette = [
+    "#8884d8", "#82ca9d", "#ffc658", "#ff7300", "#d0ed57",
+    "#a4de6c", "#8dd1e1", "#d0ed57", "#83a6ed", "#8e4585"
+  ];
+
   // 都道府県一覧を取得
   useEffect(() => {
     axios
@@ -165,7 +171,7 @@ export default function App() {
   return (
     <>
       <header className="header">
-        <h1 className="header__title">都道府県別の総人口推移グラフ</h1>
+        <h1 className="header__title">都道府県別の人口推移グラフ</h1>
       </header>
       <div className="wrapper">
 
@@ -202,10 +208,11 @@ export default function App() {
           
           ))}
         </div> {/* end tihou_container */}
-
+        <button onClick={handleReset}>選択リセット</button>
         <h2>年齢層選択</h2>
         <div>
           <input
+            className="age"
             type="radio"
             id="total"
             name="ageGroup"
@@ -213,8 +220,9 @@ export default function App() {
             checked={ageGroup === '総人口'}
             onChange={(e) => setAgeGroup(e.target.value)}
           />
-          <label htmlFor="total">総人口</label>
+          <label htmlFor="total" className='ageLabel'>総人口</label>
           <input
+          className="age"
             type="radio"
             id="oldAge"
             name="ageGroup"
@@ -222,8 +230,9 @@ export default function App() {
             checked={ageGroup === '老年人口'}
             onChange={(e) => setAgeGroup(e.target.value)}
           />
-          <label htmlFor="oldAge">老年人口</label>
+          <label htmlFor="oldAge" className='ageLabel'>老年人口</label>
           <input
+            className="age"
             type="radio"
             id="workingAge"
             name="ageGroup"
@@ -231,8 +240,9 @@ export default function App() {
             checked={ageGroup === '生産年齢人口'}
             onChange={(e) => setAgeGroup(e.target.value)}
           />
-          <label htmlFor="workingAge">生産年齢人口</label>
+          <label htmlFor="workingAge" className='ageLabel'>生産年齢人口</label>
           <input
+            className='age'
             type="radio"
             id="youngAge"
             name="ageGroup"
@@ -240,23 +250,27 @@ export default function App() {
             checked={ageGroup === '年少人口'}
             onChange={(e) => setAgeGroup(e.target.value)}
           />
-          <label htmlFor="youngAge">年少人口</label>
+          <label htmlFor="youngAge" className='ageLabel'>年少人口</label>
         </div>
-        <button onClick={handleReset}>選択リセット</button>
+        
         <h2>人口数</h2>
         {console.log(formattedData)}
 
         {<ResponsiveContainer width="100%" height={400}>
-            <LineChart data={formattedData.length > 0 ? formattedData : defaultYear}>
+            <LineChart 
+              data={formattedData.length > 0 ? formattedData : defaultYear}
+              margin={{ top: 5, right: 30, left: 30, bottom: 5 }}
+            >
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis dataKey="year" />
               <YAxis 
               // カンマを付ける
               tickFormatter={value => value.toLocaleString()}
               />
+              
               <Tooltip />
-              <Legend />
-              {formattedData.length > 0 && selectedPrefectures.map((prefCode) => {
+              <Legend verticalAlign='top'/>
+              {formattedData.length > 0 && selectedPrefectures.map((prefCode, index) => {
                 const prefName = newAllPrefectures[prefCode - 1]
                 return (
                   <Line
@@ -264,7 +278,7 @@ export default function App() {
                     type="monotone"
                     dataKey={prefName}
                     name={prefName}
-                    stroke="#8884d8"
+                    stroke={colorPalette[index % colorPalette.length]}
                     activeDot={{ r: 8 }}
                   />
                 )
