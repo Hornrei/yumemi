@@ -12,14 +12,88 @@
 .tihou_container{
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
-    margin-top: 20px;
+    justify-content: space-between;
 }
 
 .tihou{
-    width: 300px;
+    width: 350px;
 }
 
+.prefecture__container{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.prefecture__input{
+    margin: 0 ;
+    padding: 0;
+    opacity: 0  ;
+}
+
+.prefecture__item{
+    margin-right: 23px;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+}
+
+.prefecture__label{
+    display: flex;
+    margin-bottom: 10px;
+    cursor: pointer;    
+}
+.prefecture__text{
+    margin-left: 10px;
+
+}
+
+
+.prefecture__input:hover + .dummyinput{
+    background: #cccccc;
+}
+.prefecture__input:focus + .dummyinput{
+    background: #cccccc;
+}
+.prefecture__input:checked + .dummyinput{
+    background: #555555;
+}
+
+.prefecture__input:checked + .dummyinput::before{
+    content: '';
+    display: block;
+    position: absolute;
+    top: 70%;
+    left: 70%;
+    width:35%;
+    height: 2px;
+    transform: translate(-5px, -6px) rotateZ(-135deg);
+    transform-origin: 1px 1px;
+    background:#ffffff;
+}
+
+.prefecture__input:checked + .dummyinput::after{
+    content: '';
+    display: block;
+    position: absolute;
+    top: 70%;
+    left: 70%;
+    width:70%;
+    height: 2px;
+    transform: translate(-5px, -6px) rotateZ(-45deg);
+    transform-origin: 1px 1px;
+    background:#ffffff;
+}
+
+.dummyinput{
+    width: 25px;
+    height: 25px;
+    display: block;
+    top: 0;
+    left: 0;
+   background: #F5f5f5;
+    position: relative;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, .4)inset;
+}
 /* 人口構成選択 */
 
 /* チャート部分 */
