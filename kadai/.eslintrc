@@ -1,0 +1,40 @@
+{
+    "env": {
+        "browser": true,
+        "node": true,
+        "es6": true
+    },
+    "parser": "@babel/eslint-parser",
+  "parserOptions": {
+    "requireConfigFile": false,
+    "babelOptions": {
+      "presets": ["@babel/preset-env", "@babel/preset-react"]
+    },
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "airbnb-base"
+  ],
+  "plugins": [
+    "react"
+  ],
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
+    "rules": {
+        "linebreak-style": ["off"],
+        "semi": ["warn", "always"],
+        "quotes": ["warn", "double"],
+        "no-restricted-syntax": ["warn"],
+        "no-await-in-loop": ["warn"],
+        "implicit-arrow-linebreak": ["warn"],
+        "function-paren-newline": ["warn"],
+        "object-curly-newline": ["warn"]
+    }
+}
