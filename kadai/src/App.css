@@ -1,11 +1,37 @@
+@font-face{
+    font-family: "midashi";
+    src: url("../public/ZenMaruGothic-Medium.ttf");
+}
+
+@font-face {
+    font-family: "nakami";
+    src: url("../public/ZenMaruGothic-Regular.ttf");
+}
+
 /* header */
+body{
+    background-color: rgb(165, 211, 248);
+    font-family: nakami;
+}
 
 .header{
     text-align: center;
 }
+h1{
+    font-size: 40px;
+    color: #555555;
+    margin-top: 20px;
+    font-family: midashi;
+    letter-spacing: 3px;
+
+}
 .wrapper{
     width: 1200px;
     margin: 0 auto;
+    background-color: white;
+    margin-top: 20px;
+    padding : 20px;
+    border-radius:20px ;
 }
 
 /* 都道府県選択 */
@@ -160,11 +186,10 @@ input[type="radio"]{
 
 
 /* レスポンシブ対応 */
-@media screen and (max-width: 1200px){
-    .wrapper{
-        width: 100%;
-    }
-    .tihou{
-        width: 100%;
-    }
+@media screen and (max-width: 479px){
+   
+
+
+
+
 }
