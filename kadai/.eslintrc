@@ -35,6 +35,7 @@
         "no-await-in-loop": ["warn"],
         "implicit-arrow-linebreak": ["warn"],
         "function-paren-newline": ["warn"],
-        "object-curly-newline": ["warn"]
+        "object-curly-newline": ["warn"],
+        "react/no-deprecated": ["warn"]
     }
 }
