@@ -248,7 +248,6 @@ export default function App() {
         <button onClick={handleReset} className="reset_btn">
           選択リセット
         </button>
-        <h2>年齢層選択</h2>
         <div className="btn_container">
           <input
             className="age"
