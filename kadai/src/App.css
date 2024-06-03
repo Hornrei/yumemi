@@ -36,15 +36,6 @@ h1{
 }
 
 /* 都道府県選択 */
-.tihou_container{
-    /* display: flex;
-    flex-wrap: wrap; */
-}
-
-.tihou{
-    /* width: auto;
-    max-width: 300px; */
-}
 
 .prefecture__container{
     display: flex;
