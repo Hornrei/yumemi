@@ -37,6 +37,9 @@
         "function-paren-newline": ["warn"],
         "object-curly-newline": ["warn"],
         "react/no-deprecated": ["warn"],
-        "operator-linebreak": ["off"]
+        "operator-linebreak": ["off"],
+        "no-undef": ["off"],
+        "prefer-destructuring": ["warn"],
+        "no-shadow" : ["warn"]
     }
 }
