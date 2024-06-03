@@ -6,7 +6,7 @@ import RegionSelector from "./RegionSelector";
 const prefectures = [
   { prefCode: 1, prefName: "北海道" },
   { prefCode: 2, prefName: "青森県" },
-  // Add other prefectures as needed
+  { prefCode: 47, prefName: "沖縄県" }
 ];
 
 const selectedPrefectures = [1];
