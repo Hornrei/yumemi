@@ -1,9 +1,19 @@
-// RegionSelector.js
 import React from "react";
 import PropTypes from "prop-types";
 import "../App.css";
 
-const regions = {
+type Regions = {
+  [key: string]: string[];
+  北海道地方: string[];
+  東北地方: string[];
+  関東地方: string[];
+  中部地方: string[];
+  近畿地方: string[];
+  中国地方: string[];
+  四国地方: string[];
+  九州地方: string[];
+};
+const regions: Regions = {
   北海道地方: ["北海道"],
   東北地方: ["青森県", "岩手県", "宮城県", "秋田県", "山形県", "福島県"],
   関東地方: [
@@ -52,47 +62,39 @@ const regions = {
 function RegionSelector({
   prefectures,
   selectedPrefectures,
-  onCheckboxChange
+  onCheckboxChange,
 }: any) {
   return (
-    // @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
     <div className="tihou_container">
       {Object.keys(regions).map((region) => (
-        // @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
         <div key={region} className="tihou">
-          // @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
           <h3>{region}</h3>
-          // @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
           <div className="prefecture__container">
             {prefectures
-              // @ts-expect-error TS(7053): Element implicitly has an 'any' type because expre... Remove this comment to see the full error message
               .filter((pref: any) => regions[region].includes(pref.prefName))
-              // @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
-              .map((prefecture: any) => <div key={prefecture.prefCode} className="prefecture__item">
-              // @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
-              <label
-                className="prefecture__label"
-                htmlFor={`checkbox-${prefecture.prefCode}`}
-              >
-                // @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
-                <input
-                  className="prefecture__input"
-                  type="checkbox"
-                  id={`checkbox-${prefecture.prefCode}`}
-                  name={prefecture.prefName}
-                  checked={selectedPrefectures.includes(
-                    prefecture.prefCode,
-                  )}
-                  onChange={() => onCheckboxChange(prefecture.prefCode)}
-                />
-                // @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
-                <span className="dummyinput"></span>
-                // @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
-                <span className="prefecture__text">
-                  {prefecture.prefName}
-                </span>
-              </label>
-            </div>)}
+              .map((prefecture: any) => (
+                <div key={prefecture.prefCode} className="prefecture__item">
+                  <label
+                    className="prefecture__label"
+                    htmlFor={`checkbox-${prefecture.prefCode}`}
+                  >
+                    <input
+                      className="prefecture__input"
+                      type="checkbox"
+                      id={`checkbox-${prefecture.prefCode}`}
+                      name={prefecture.prefName}
+                      checked={selectedPrefectures.includes(
+                        prefecture.prefCode,
+                      )}
+                      onChange={() => onCheckboxChange(prefecture.prefCode)}
+                    />
+                    <span className="dummyinput"></span>
+                    <span className="prefecture__text">
+                      {prefecture.prefName}
+                    </span>
+                  </label>
+                </div>
+              ))}
           </div>
         </div>
       ))}

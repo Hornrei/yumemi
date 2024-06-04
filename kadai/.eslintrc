@@ -4,7 +4,7 @@
         "node": true,
         "es6": true
     },
-    "parser": "@babel/eslint-parser",
+    "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "requireConfigFile": false,
     "babelOptions": {
@@ -25,6 +25,11 @@
   "settings": {
     "react": {
       "version": "detect"
+    },
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      }
     }
   },
     "rules": {
@@ -40,6 +45,14 @@
         "operator-linebreak": ["off"],
         "no-undef": ["off"],
         "prefer-destructuring": ["warn"],
-        "no-shadow" : ["warn"]
+        "no-shadow" : ["warn"],
+        "import/no-extraneous-dependencies": ["off"],
+        "import/extensions": ["warn", "ignorePackages", {
+          "js": "never",
+          "jsx": "never",
+          "ts": "never",
+          "tsx": "never"
+        }],
+        "comma-dangle": ["warn", "never"]
     }
 }
