@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/yumemi/static/css/main.a15147f3.css",
+    "main.js": "/yumemi/static/js/main.dab28a87.js",
+    "static/media/ZenMaruGothic-Regular.ttf": "/yumemi/static/media/ZenMaruGothic-Regular.8ea8480b91d727e7d3cf.ttf",
+    "static/media/ZenMaruGothic-Medium.ttf": "/yumemi/static/media/ZenMaruGothic-Medium.ec1525c5fa7f9689df16.ttf",
+    "index.html": "/yumemi/index.html",
+    "main.a15147f3.css.map": "/yumemi/static/css/main.a15147f3.css.map",
+    "main.dab28a87.js.map": "/yumemi/static/js/main.dab28a87.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.a15147f3.css",
+    "static/js/main.dab28a87.js"
+  ]
+}
