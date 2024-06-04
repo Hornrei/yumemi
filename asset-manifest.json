@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/Hornrei.github.io/yumemi/static/css/main.9cece415.css",
+    "main.js": "/Hornrei.github.io/yumemi/static/js/main.dab28a87.js",
+    "static/media/ZenMaruGothic-Regular.ttf": "/Hornrei.github.io/yumemi/static/media/ZenMaruGothic-Regular.8ea8480b91d727e7d3cf.ttf",
+    "static/media/ZenMaruGothic-Medium.ttf": "/Hornrei.github.io/yumemi/static/media/ZenMaruGothic-Medium.ec1525c5fa7f9689df16.ttf",
+    "index.html": "/Hornrei.github.io/yumemi/index.html",
+    "main.9cece415.css.map": "/Hornrei.github.io/yumemi/static/css/main.9cece415.css.map",
+    "main.dab28a87.js.map": "/Hornrei.github.io/yumemi/static/js/main.dab28a87.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.9cece415.css",
+    "static/js/main.dab28a87.js"
+  ]
+}
