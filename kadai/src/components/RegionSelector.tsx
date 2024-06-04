@@ -52,39 +52,47 @@ const regions = {
 function RegionSelector({
   prefectures,
   selectedPrefectures,
-  onCheckboxChange,
-}) {
+  onCheckboxChange
+}: any) {
   return (
+    // @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
     <div className="tihou_container">
       {Object.keys(regions).map((region) => (
+        // @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
         <div key={region} className="tihou">
+          // @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
           <h3>{region}</h3>
+          // @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
           <div className="prefecture__container">
             {prefectures
-              .filter((pref) => regions[region].includes(pref.prefName))
-              .map((prefecture) => (
-                <div key={prefecture.prefCode} className="prefecture__item">
-                  <label
-                    className="prefecture__label"
-                    htmlFor={`checkbox-${prefecture.prefCode}`}
-                  >
-                    <input
-                      className="prefecture__input"
-                      type="checkbox"
-                      id={`checkbox-${prefecture.prefCode}`}
-                      name={prefecture.prefName}
-                      checked={selectedPrefectures.includes(
-                        prefecture.prefCode,
-                      )}
-                      onChange={() => onCheckboxChange(prefecture.prefCode)}
-                    />
-                    <span className="dummyinput"></span>
-                    <span className="prefecture__text">
-                      {prefecture.prefName}
-                    </span>
-                  </label>
-                </div>
-              ))}
+              // @ts-expect-error TS(7053): Element implicitly has an 'any' type because expre... Remove this comment to see the full error message
+              .filter((pref: any) => regions[region].includes(pref.prefName))
+              // @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
+              .map((prefecture: any) => <div key={prefecture.prefCode} className="prefecture__item">
+              // @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
+              <label
+                className="prefecture__label"
+                htmlFor={`checkbox-${prefecture.prefCode}`}
+              >
+                // @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
+                <input
+                  className="prefecture__input"
+                  type="checkbox"
+                  id={`checkbox-${prefecture.prefCode}`}
+                  name={prefecture.prefName}
+                  checked={selectedPrefectures.includes(
+                    prefecture.prefCode,
+                  )}
+                  onChange={() => onCheckboxChange(prefecture.prefCode)}
+                />
+                // @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
+                <span className="dummyinput"></span>
+                // @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
+                <span className="prefecture__text">
+                  {prefecture.prefName}
+                </span>
+              </label>
+            </div>)}
           </div>
         </div>
       ))}

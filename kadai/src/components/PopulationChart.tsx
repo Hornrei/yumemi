@@ -16,8 +16,8 @@ function PopulationChart({
   data,
   selectedPrefectures,
   colorPalette,
-  prefectures,
-}) {
+  prefectures
+}: any) {
   const defaultYear = [
     { year: "1960" },
     { year: "1965" },
@@ -39,8 +39,11 @@ function PopulationChart({
     { year: "2045" },
   ];
 
-  const formattedData = data.reduce((acc, { prefCode, data }) => {
-    data.forEach((item, index) => {
+  const formattedData = data.reduce((acc: any, {
+    prefCode,
+    data
+  }: any) => {
+    data.forEach((item: any, index: any) => {
       if (!acc[index]) {
         acc[index] = { year: item.year };
       }
@@ -50,20 +53,28 @@ function PopulationChart({
   }, []);
 
   return (
+    // @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
     <ResponsiveContainer width="100%" height={400}>
+      // @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
       <LineChart
         data={formattedData.length > 0 ? formattedData : defaultYear}
         margin={{ top: 5, right: 30, left: 30, bottom: 5 }}
       >
+        // @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
         <CartesianGrid strokeDasharray="3 3" />
+        // @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
         <XAxis dataKey="year" />
+        // @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
         <YAxis tickFormatter={(value) => value.toLocaleString()} />
+        // @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
         <Tooltip />
+        // @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
         <Legend verticalAlign="top" />
         {formattedData.length > 0 &&
-          selectedPrefectures.map((prefCode, index) => {
+          selectedPrefectures.map((prefCode: any, index: any) => {
             const prefName = prefectures[prefCode - 1].prefName;
             return (
+              // @ts-expect-error TS(17004): Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
               <Line
                 key={prefCode}
                 type="monotone"
