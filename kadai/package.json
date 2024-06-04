@@ -24,9 +24,9 @@
     "eject": "react-scripts eject",
     "lint": "eslint src/**/*.tsx",
     "format": "prettier --write src/**/*.tsx",
-    "del": "del -rf docs",
+    "del": "del -f docs",
     "move": "move build docs",
-    "git": "git add . && git commit && git push origin master",
+    "git": "git add . && git commit && git push origin main",
     "deploy": "npm run del && npm run build && npm run move && npm run git"
   },
   "browserslist": {
