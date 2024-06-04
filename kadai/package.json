@@ -24,10 +24,8 @@
     "eject": "react-scripts eject",
     "lint": "eslint src/**/*.tsx",
     "format": "prettier --write src/**/*.tsx",
-    "del": "del -f docs",
-    "move": "move build docs",
-    "git": "git add . && git commit && git push origin main",
-    "deploy": "npm run del && npm run build && npm run move && npm run git"
+    "predeploy": "npm run build",
+    "deploy": "gh-pages main -d build"
   },
   "browserslist": {
     "production": [
